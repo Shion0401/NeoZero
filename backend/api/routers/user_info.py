@@ -89,33 +89,31 @@ async def ChangePetInfo(
     user_comment: str = Form(None), 
     file: UploadFile = File(None)
     ):# user_icon: str = Query(None)変更
-
+    # return "test"
     try:
         # そもそもユーザーがいるか判定
         user_exists = handle_db.CheckUser(user_id)
         if user_exists == None:
             return {"error": f"ユーザーがいません"}
         else:
-            file_content = await file.read()
-            # ファイルがアップロードされている時
-            if not file_content is None:
-                # iconのURLを取得
-                icon_url = await image_db.GetIcon(user_id)
-                # ユーザーアイコンがある時，削除　 # 投稿削除のやつで代用
-                if not icon_url is None:
-                    image_db.DeletePostImageas3(icon_url)
-                # アイコンを変更する
-                file_url = await image_db.ChangeIcon(file_content,file.content_type,file.filename)
-                result = await handle_db.ChangePetInfo(user_id, user_name, user_comment, file_url)
-
-        return {
-             "result" : result,
-             "message": "アップロード成功",
-        }
-    except:
-        return {
-            "error": f"アップロードhoge失敗",
-            }
+            # ファイルがあるか
+            #if file:
+            #    file_content = await file.read()
+            #    # ファイルがアップロードされている時
+            #    if not file_content is None:
+            #    # iconのURLを取得
+            #        icon_url = await image_db.GetIcon(user_id)
+            #    # ユーザーアイコンがある時，削除　 # 投稿削除のやつで代用
+            #        if not icon_url is None:
+            #            image_db.DeletePostImageas3(icon_url)
+            #    # アイコンを変更する
+            #        file_url = await image_db.ChangeIcon(file_content,file.content_type,file.filename)
+            #        result = await handle_db.ChangePetInfo(user_id, user_name, user_comment, file_url)
+            #else:
+            result = await handle_db.ChangePetInfo(user_id, user_name, user_comment)  # アイコンは変更しない
+            return  result
+    except Exception as e:
+        return {"error": str(e)}
     # return result
     #####
     # 成功したらChangeIconも

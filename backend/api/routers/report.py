@@ -25,9 +25,9 @@ async def InsertUpdateReport(user_id: str):
     if result == -1:
         return -1
     elif result == 0:
-        result = await handle_db.InsertReport(user_id)
+        result = await handle_db.InsertReport(data.userid)
     else:
-        result = await handle_db.UpdateReport(user_id)
+        result = await handle_db.UpdateReport(data.userid)
     return result
 
 ## ExclusionViolationUser
@@ -36,7 +36,7 @@ async def ExclusionViolationUser(user_id: str):
     result = handle_db.DeleteReport(user_id)
     return result
 
-##„ÄÄReportPost
+##Å@ReportPost
 @router.get(path="/report/post")
 async def ReportPost(postid: str):
     result = await handle_db.ReportPost(postid)

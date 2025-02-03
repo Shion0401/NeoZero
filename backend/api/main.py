@@ -16,7 +16,11 @@ app.include_router(router)
 
 app.add_middleware(
     CORSMiddleware,
+<<<<<<< HEAD
     allow_origins=["http://localhost:3000","https://neozeroinc.vercel.app/","https://neozero.metifie.com"],  # フロントエンドのオリジン
+=======
+    allow_origins=["http://localhost:3000"],  # フロントエンドのオリジン ,"https://neozeroinc.vercel.app","https://neozero.metifie.com"
+>>>>>>> 35c19948 (AWSのバックエンドをadd)
     allow_credentials=True,                    # credentialsを許可
     allow_methods=["*"],                       # 全HTTPメソッドを許可
     allow_headers=["*"],                       # 全ヘッダーを許可

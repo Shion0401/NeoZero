@@ -12,24 +12,27 @@ router = APIRouter()
 
 ## Follow & UnFollow
 @router.post(path="/follow")
-async def Follow(following: str, followed: str):
-    check = await handle_db.GetConfirmConbination(following, followed)
+async def Follow(data: schema.FollowStatusRequest):
+    check = await handle_db.GetConfirmConbination(data.userid, data.followedid)
+    print(f"GetConfirmConbination result: {check}")  # デバッグ用ログ
     if check == "None":
-        result = await handle_db.Follow(following, followed)
+        result = await handle_db.Follow(data.userid, data.followedid)
     elif check == -1:
         return -1
     else:
-        result = await handle_db.ChangeFlag(following, followed)
+        result = await handle_db.ChangeFlag(data.userid, data.followedid)
+    print(f"ChangeFlag result: {result}")  # デバッグ用ログ
     return result
 
 ## GetFollow フォローリストをとってくる
-@router.get(path="/follow/{user_id}")
+@router.get(path="/followlist/{user_id}")
 async def GetFollow(user_id: str):
     result = await handle_db.GetFollow(user_id)
     if result == -1:
         return -1
     # GetIconを呼び出す
     # result = await handle_db.GetIcon(user_id)
+    print(result)
     return result
     
 ## FollowStatus

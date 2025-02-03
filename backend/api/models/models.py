@@ -69,7 +69,7 @@ class Post(base):
     image = Column(VARCHAR(255))
     user_id = Column(CHAR(36), ForeignKey("user.id"))  # 型を一致させる
     user = relationship("User", back_populates="post")
-    good = relationship("Good", back_populates="post")
+    good = relationship('Good', back_populates='post', cascade='all, delete-orphan')
 
     def __init__(self):
         self.id = str(uuid.uuid4())

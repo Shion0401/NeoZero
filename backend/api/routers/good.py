@@ -1,5 +1,5 @@
 from fastapi import APIRouter, FastAPI, Depends, Path, HTTPException
-import api.models.models as models
+import models.models as models
 from fastapi.middleware.cors import CORSMiddleware
 import api.cruds.good as handle_db
 import api.schemas.good as schema

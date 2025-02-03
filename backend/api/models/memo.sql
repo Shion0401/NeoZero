@@ -6,7 +6,7 @@ DROP TABLE IF EXISTS corpinfo;
 DROP TABLE IF EXISTS admin;
 DROP TABLE IF EXISTS user;
 
--- User ƒe[ƒuƒ‹
+-- User ãƒ†ãƒ¼ãƒ–ãƒ«
 CREATE TABLE user (
     id CHAR(36) PRIMARY KEY,
     name VARCHAR(10),
@@ -17,7 +17,7 @@ CREATE TABLE user (
 );
 
 
--- Followlist ƒe[ƒuƒ‹
+-- Followlist ãƒ†ãƒ¼ãƒ–ãƒ«
 CREATE TABLE followlist (
     following CHAR(36) NOT NULL,
     followed CHAR(36) NOT NULL,
@@ -27,7 +27,7 @@ CREATE TABLE followlist (
     FOREIGN KEY (followed) REFERENCES user(id) ON DELETE CASCADE
 );
 
--- Post ƒe[ƒuƒ‹
+-- Post ãƒ†ãƒ¼ãƒ–ãƒ«
 CREATE TABLE post (
     id CHAR(36) PRIMARY KEY,
     title VARCHAR(17),
@@ -48,7 +48,7 @@ CREATE TABLE good (
     FOREIGN KEY (post_id) REFERENCES post(id)
 );
 
--- Report ƒe[ƒuƒ‹
+-- Report ãƒ†ãƒ¼ãƒ–ãƒ«
 CREATE TABLE report (
     id CHAR(36) PRIMARY KEY,
     times INT DEFAULT 0,
@@ -57,7 +57,7 @@ CREATE TABLE report (
     FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE
 );
 
--- Admin ƒe[ƒuƒ‹
+-- Admin ãƒ†ãƒ¼ãƒ–ãƒ«
 CREATE TABLE admin (
     id CHAR(36) PRIMARY KEY,
     name VARCHAR(10),
@@ -65,7 +65,7 @@ CREATE TABLE admin (
     password VARCHAR(64)
 );
 
--- CorpInfo ƒe[ƒuƒ‹
+-- CorpInfo ãƒ†ãƒ¼ãƒ–ãƒ«
 CREATE TABLE corpinfo (
     id CHAR(36) PRIMARY KEY,
     corpname VARCHAR(30),

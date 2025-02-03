@@ -94,7 +94,7 @@ async def ChangeUserPass(user_id, new_user_password):
 
 
 ## ChangePetInfo
-def ChangePetInfo(user_id, user_name, user_comment,user_image):
+async def ChangePetInfo(user_id, user_name, user_comment):
     session = databases.create_new_session()
     user = session.query(models.User).\
                 filter(models.User.id == user_id).\
@@ -106,7 +106,6 @@ def ChangePetInfo(user_id, user_name, user_comment,user_image):
     if user_comment is not None:
         user.comment = user_comment
     # if user_comment is not None:
-    user.image = user_image
     session.commit()
     return 0
 

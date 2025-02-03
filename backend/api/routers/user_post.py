@@ -54,7 +54,7 @@ async def Post(user_id: str = Form(None), title: str = Form(None), caption: str 
         return {
             #"result" : result,
             "message": "アップロード成功",
-            "file_url": file_url,
+            "file_url": s3_key,
             "title": title,
             "caption": caption,
         }
@@ -74,6 +74,7 @@ async def Post(user_id: str = Form(None), title: str = Form(None), caption: str 
 ## GetOnesPost
 @router.get(path="/post/get/{user_id}")
 async def GetOnesPost(user_id: str):
+    print("routers GetO",user_id)
     result = await handle_db.GetOnesPost(user_id)
     return result
     # posts = [
@@ -130,7 +131,7 @@ async def GetNewPost():
     #     }
     #     for post in result
     # ]
-    # return {"posts": posts}
+
  
 
 ## DeletePost 
